@@ -13,29 +13,20 @@ import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { ProductService } from './services/product.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductdetailsComponent } from './components/productdetails/productdetails.component';
-import { Routes, RouterModule} from '@angular/router';
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { FormsModule } from '@angular/forms';
-import { AuthGuard } from './guards/auth.guard';
-import { Role } from './common/role';
+import { AddProductsComponent } from './admin/products/add-products/add-products.component';
+import { UpdateProductsComponent } from './admin/products/update-products/update-products.component';
+import { ProducsListComponent } from './admin/products/producs-list/producs-list.component';
+import { AddCategoryComponent } from './admin/categoryProducts/add-category/add-category.component';
+import { UpdateCategoryComponent } from './admin/categoryProducts/update-category/update-category.component';
+import { ListCategoryComponent } from './admin/categoryProducts/list-category/list-category.component';
+import { UserProfileComponent } from './admin/user/user-profile/user-profile.component';
+import { UserListComponent } from './admin/user/user-list/user-list.component';
 
 
-const routes: Routes = [
-  {path: 'products/:id', component: ProductdetailsComponent},
-   {path: '', component: HomeComponent},
-   {path: 'cart-details', component: CartDetailsComponent},
-   {path: 'login', component: AuthComponent},
-   {path: 'admin', component: DashboardComponent, canActivate: [AuthGuard],
-  data: {roles: [Role.ADMIN]}},
-  // {path: '401', component: HomeComponent},
-  // {path: 'category/:id', component: ProductListComponent},
-  // {path: 'category', component: ProductListComponent},
-  // {path: 'products', component: ProductListComponent},
-  // {path: '', redirectTo: '/products', pathMatch: 'full'},
-  // {path: '**', redirectTo: '/products', pathMatch: 'full'}
-];
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,17 +40,24 @@ const routes: Routes = [
     ProductdetailsComponent,
     CartDetailsComponent,
     CarouselComponent,
-    AuthComponent
+    AuthComponent,
+    AddProductsComponent,
+    UpdateProductsComponent,
+    ProducsListComponent,
+    AddCategoryComponent,
+    UpdateCategoryComponent,
+    ListCategoryComponent,
+    UserProfileComponent,
+    UserListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule.forRoot(routes),
     FormsModule,
     
   ],
   providers: [ProductService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

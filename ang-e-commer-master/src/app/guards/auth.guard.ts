@@ -1,32 +1,45 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {
+  ActivatedRouteSnapshot,
+  CanActivate,
+  Router,
+  RouterStateSnapshot,
+  UrlTree,
+} from '@angular/router';
 import { Observable } from 'rxjs';
 import { User } from '../common/user';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
+  private currentUser: User = new User();
 
-  private currentUser: User = new User;
-
-  constructor(private authenticationService :AuthenticationService, private router: Router){
-    this.authenticationService.currentUser.subscribe(data => {this.currentUser =data})
+  constructor(
+    private authenticationService: AuthenticationService,
+    private router: Router
+  ) {
+    this.authenticationService.currentUser.subscribe((data) => {
+      this.currentUser = data;
+    });
   }
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      
-      if(this.currentUser){
-if (route.data.roles?.indexOf(this.currentUser.role) == -1){
-  // this.router.navigate(['/401']);
-  return false;
-}
-        return true;
+    state: RouterStateSnapshot
+  ):
+    | Observable<boolean | UrlTree>
+    | Promise<boolean | UrlTree>
+    | boolean
+    | UrlTree {
+    if (this.currentUser) {
+      if (route.data.roles?.indexOf(this.currentUser.role) === -1) {
+        // this.router.navigate(['/401']);
+        return false;
       }
-      this.router.navigate(['/login']);
+      return true;
+    }
+    this.router.navigate(['/login']);
     return true;
   }
-  
 }
