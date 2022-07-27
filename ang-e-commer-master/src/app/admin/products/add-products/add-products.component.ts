@@ -1,4 +1,10 @@
+import { CategoryProduct } from './../../../common/category-product';
+import { CategoryProductService } from './../../../services/category-product.service';
+import { Product } from 'src/app/common/product';
+import { ProductService } from 'src/app/services/product.service';
+import { Router } from '@angular/router';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-add-products',
@@ -12,7 +18,28 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class AddProductsComponent implements OnInit {
-  constructor() {}
+  product: Product = new Product();
+  categoryList: CategoryProduct[];
+  constructor(
+    private router: Router,
+    private productService: ProductService,
+    private categoryProduct: CategoryProductService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.categoryProduct.getProductCategories().subscribe((data: CategoryProduct[]) => {
+      this.categoryList = data;
+    }
+    );
+  }
+
+  addProduct(): void {
+    this.productService.addProduct(this.product).subscribe(() => {
+      this.router.navigate(['/listProduct']);
+    });
+  }
+  setNewCategory(category: CategoryProduct): void {
+    console.log(category);
+    this.product.category = category;
+    }
 }

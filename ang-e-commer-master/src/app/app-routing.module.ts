@@ -1,3 +1,4 @@
+import { ProducsListComponent } from './admin/products/producs-list/producs-list.component';
 import { UserProfileComponent } from './admin/user/user-profile/user-profile.component';
 import { AddProductsComponent } from './admin/products/add-products/add-products.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -22,7 +23,7 @@ const routes: Routes = [
     data: { roles: [Role.ADMIN] },},
   { path: 'back', component: DashboardComponent },
   { path: 'addproduct', component: AddProductsComponent },
-  //{ path: 'updateproduct/:id', component: AddProductsComponent },
+  { path: 'listProduct', component: ProducsListComponent },
   { path: 'myprofile', component: UserProfileComponent },
   // {path: 'category', component: ProductListComponent},
   // {path: 'products', component: ProductListComponent},

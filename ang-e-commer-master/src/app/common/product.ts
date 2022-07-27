@@ -1,3 +1,4 @@
+import { CategoryProduct } from './category-product';
 export class Product {
     id!: number  ;
     name!:string;
@@ -6,6 +7,7 @@ export class Product {
     nprix!:number;
     gprix!:number;
     quantity!:number;
+    category!:CategoryProduct;
     createdDate!:Date;
     updatedDate!:Date;
     
