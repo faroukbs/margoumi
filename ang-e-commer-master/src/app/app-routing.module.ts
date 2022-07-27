@@ -1,3 +1,4 @@
+import { AddProductsComponent } from './admin/products/add-products/add-products.component';
 import { AuthGuard } from './guards/auth.guard';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { AuthComponent } from './components/auth/auth.component';
@@ -20,7 +21,7 @@ const routes: Routes = [
     data: { roles: [Role.ADMIN] },
   },
    {path: 'back', component: DashboardComponent},
-  // {path: 'category/:id', component: ProductListComponent},
+   {path: 'addproduct', component: AddProductsComponent},
   // {path: 'category', component: ProductListComponent},
   // {path: 'products', component: ProductListComponent},
   // {path: '', redirectTo: '/products', pathMatch: 'full'},

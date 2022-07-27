@@ -25,6 +25,7 @@ import { UpdateCategoryComponent } from './admin/categoryProducts/update-categor
 import { ListCategoryComponent } from './admin/categoryProducts/list-category/list-category.component';
 import { UserProfileComponent } from './admin/user/user-profile/user-profile.component';
 import { UserListComponent } from './admin/user/user-list/user-list.component';
+import { NavbarComponent } from './admin/navbar/navbar.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { UserListComponent } from './admin/user/user-list/user-list.component';
     ListCategoryComponent,
     UserProfileComponent,
     UserListComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
