@@ -1,3 +1,4 @@
+import { UserProfileComponent } from './admin/user/user-profile/user-profile.component';
 import { AddProductsComponent } from './admin/products/add-products/add-products.component';
 import { AuthGuard } from './guards/auth.guard';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
@@ -18,10 +19,11 @@ const routes: Routes = [
     path: 'admin',
     component: DashboardComponent,
     canActivate: [AuthGuard],
-    data: { roles: [Role.ADMIN] },
-  },
-   {path: 'back', component: DashboardComponent},
-   {path: 'addproduct', component: AddProductsComponent},
+    data: { roles: [Role.ADMIN] },},
+  { path: 'back', component: DashboardComponent },
+  { path: 'addproduct', component: AddProductsComponent },
+  //{ path: 'updateproduct/:id', component: AddProductsComponent },
+  { path: 'myprofile', component: UserProfileComponent },
   // {path: 'category', component: ProductListComponent},
   // {path: 'products', component: ProductListComponent},
   // {path: '', redirectTo: '/products', pathMatch: 'full'},
