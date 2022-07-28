@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-dashboard',
@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
     '../../../assets/admin/demo/demo.css',
     '../../../assets/admin/css/bootstrap.min.css',
   ],
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class DashboardComponent implements OnInit {
 
