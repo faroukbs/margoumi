@@ -16,7 +16,7 @@ import { ProductdetailsComponent } from './components/productdetails/productdeta
 import { CartDetailsComponent } from './components/cart-details/cart-details.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { AuthComponent } from './components/auth/auth.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddProductsComponent } from './admin/products/add-products/add-products.component';
 import { UpdateProductsComponent } from './admin/products/update-products/update-products.component';
 import { ProducsListComponent } from './admin/products/producs-list/producs-list.component';
@@ -57,6 +57,7 @@ import { NavbarComponent } from './admin/navbar/navbar.component';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     
   ],
   providers: [ProductService],

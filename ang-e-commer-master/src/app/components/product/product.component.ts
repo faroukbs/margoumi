@@ -13,7 +13,7 @@ export class ProductComponent implements OnInit {
 
   products!: Product[];
 
-  constructor(private productService: ProductService, private cartService: CartService) {
+  constructor(public productService: ProductService, private cartService: CartService) {
 
   }
 

@@ -15,24 +15,25 @@ public class ProductService {
     public ProductService(ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
-    public List<Product> findAllProduct( ){
+
+    public List<Product> findAllProduct() {
         return productRepository.findAll();
     }
 
-    public Product findProdById(Long id) throws Exception{
+    public Product findProdById(Long id) throws Exception {
         return productRepository.findProductById(id)
                 .orElseThrow(() -> new Exception("User by id " + id + " was not found"));
     }
 
-    public Product addProduct(Product product){
+    public long addProduct(Product product){
+        return productRepository.save(product).getId();
+    }
+
+    public Product editProduct(Product product) {
         return productRepository.save(product);
     }
 
-    public Product editProduct(Product product){
-        return  productRepository.save(product);
-    }
-
-    public void deleteProduct(Long id){
+    public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }
 }

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from 'src/app/common/product';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
@@ -15,7 +16,8 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 })
 export class ProducsListComponent implements OnInit {
   productList: Array<Product> = [];
-  constructor(private productService: ProductService) {}
+  product: Product = new Product();
+  constructor(private productService: ProductService, private router: Router) {}
   ngOnInit(): void {
     return this.getProducts();
   }
@@ -24,4 +26,13 @@ export class ProducsListComponent implements OnInit {
       this.productList = data;
     });
   }
+
+  // deleteProduct(): void {
+  //   this.productService.deleteProduct(this.product.id).subscribe({
+  //     next: (res) => {
+  //       console.log(res);
+  //       this.router.navigate(['/listProduct']);
+  //     }
+  // }
+
 }
