@@ -10,7 +10,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
     '../../../assets/admin/css/bootstrap.min.css',
   ],
   
-  encapsulation: ViewEncapsulation.ShadowDom,
+  
 })
 export class SidebarComponent implements OnInit {
   constructor() {}

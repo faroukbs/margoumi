@@ -17,7 +17,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 export class ProducsListComponent implements OnInit {
   productList: Array<Product> = [];
   product: Product = new Product();
-  constructor(private productService: ProductService, private router: Router) {}
+  constructor(public productService: ProductService, private router: Router) {}
   ngOnInit(): void {
     return this.getProducts();
   }
@@ -27,12 +27,12 @@ export class ProducsListComponent implements OnInit {
     });
   }
 
-  // deleteProduct(): void {
-  //   this.productService.deleteProduct(this.product.id).subscribe({
-  //     next: (res) => {
-  //       console.log(res);
-  //       this.router.navigate(['/listProduct']);
-  //     }
-  // }
+  deleteProduct(id : number): void {
+    this.productService.deleteProduct(id).subscribe(()=>(this.productList = this.productList.filter((t) => t.id !== id)));
+
+}
+ updateProduct(){
+    
+ }
 
 }

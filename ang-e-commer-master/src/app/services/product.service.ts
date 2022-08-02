@@ -28,5 +28,11 @@ export class ProductService {
   deleteProduct(id: number): Observable<Product> {
     return this.httpClient.delete<Product>(this.baseUrl + '/delete/' + id);
   }
+  getImagesByProducts(id:number):Observable<any[]>{
+    return this.httpClient.get<any[]>(this.baseUrl+"/images/"+id)
+  }
+  getProductByCategory(id:number):Observable<Product[]>{
+    return this.httpClient.get<Product[]>(this.baseUrl+"/catproducts/"+id)
+  }
 
 }

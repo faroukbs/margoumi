@@ -80,7 +80,7 @@
                           {{list.quantity}}
                         </td>
                         <td>
-                          {{list.image}}
+                          {{this.productService.baseUrl+'/Imgarticles/'+product.id}}
                         </td>
                         <td>
                           <button type="button" routerLink="/updateProduct"
@@ -88,7 +88,7 @@
                         </td>
                         <td>
                           <button type="button" routerLink="/deleteProduct"
-                            class="btn btn-outline-danger">Delete</button>
+                            class="btn btn-outline-danger" (click)="deleteProduct(list.id)">Delete</button>
                         </td>
                       </tr>
                     </tbody>

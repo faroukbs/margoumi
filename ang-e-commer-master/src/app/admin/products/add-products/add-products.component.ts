@@ -23,6 +23,7 @@ export class AddProductsComponent implements OnInit {
   userFile: any;
   public imagePath: any;
   imgURL: any;
+  files: string[] = [];
 
   constructor(
     private router: Router,
@@ -46,12 +47,15 @@ export class AddProductsComponent implements OnInit {
     const product = this.productService.dataForm.value;
     // formData.append('article', JSON.stringify(product));
     formData.append('product', JSON.stringify(product));
-    formData.append('file', this.userFile);
+    //formData.append('file', this.userFile); one file uploading
+
+    for (let i = 0; i < this.files.length; i++) {
+      formData.append('files', this.files[i]);
+    }
     console.log(product);
     this.productService.addProductt(formData).subscribe((data) => {
       this.router.navigate(['/']);
     });
-    
   }
   setNewCategory(category: CategoryProduct): void {
     this.productService.dataForm.value.category = category;
@@ -68,6 +72,9 @@ export class AddProductsComponent implements OnInit {
   }
 
   onSelectFile(event: any) {
+    for (var i = 0; i < event.target.files.length; i++) {
+      this.files.push(event.target.files[i]);
+    }
     if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.userFile = file;

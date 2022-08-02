@@ -1,65 +1,74 @@
 <app-header></app-header>
 <section id="cart_items">
-    <div class="container">
-        <div class="breadcrumbs">
-            <ol class="breadcrumb">
-              <li><a href="#">Home</a></li>
-              <li class="active">Shopping Cart</li>
-            </ol>
-        </div>
-        <div *ngIf="cartItems.length > 0" class="table-responsive cart_info">
-            <table class="table table-condensed">
-                <thead>
-                    <tr class="cart_menu">
-                        <td class="image">Item</td>
-                        <td class="description"></td>
-                        <td class="price">Price</td>
-                        <td class="quantity">Quantity</td>
-                        <td class="total">Total</td>
-                        <td></td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let cartItem of cartItems">
-                        <td class="cart_product">
-                            <a href=""><img src="assets/images/cart/one.png" alt=""></a>
-                        </td>
-                        <td class="cart_description">
-                            <h4><a href="">{{cartItem.name}}</a></h4>
-                            <p>Web ID: 1089772</p>
-                        </td>
-                        <td class="cart_price">
-                            <p>{{cartItem.nprix}} TND</p>
-                        </td>
-                        <td class="cart_quantity">
-                            <div class="cart_quantity_button">
-                                <button (click)="incrementQuantity(cartItem)" class="cart_quantity_up" > + </button>
-                                <input class="cart_quantity_input" type="text" name="quantity" value="{{cartItem.quantity}}" autocomplete="off" size="2">
-                                <button (click)="decrementQuantity(cartItem)" class="cart_quantity_down"> - </button>
-                            </div>
-                        </td>
-                        <td class="cart_total">
-                            <p class="cart_total_price">{{cartItem.quantity * cartItem.nprix}} TND</p>
-                        </td>
-                        <td class="cart_delete">
-                            <button (click)="remove(cartItem)" class="cart_quantity_delete" ><i class="fa fa-times"></i></button>
-                        </td>
-                    </tr>
-
-                   
-                </tbody>
-            </table>
-        </div>
-        <div *ngIf="cartItems.length == 0" class="alert alert-warning col-md-12" role="alert">
-            Your shopping cart is empty. 
-        </div>
+  <div class="container">
+    <div class="breadcrumbs">
+      <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li class="active">Shopping Cart</li>
+      </ol>
     </div>
-</section> <!--/#cart_items-->
+    <div *ngIf="cartItems.length > 0" class="table-responsive cart_info">
+      <table class="table table-condensed">
+        <thead>
+          <tr class="cart_menu">
+            <td class="image">Item</td>
+            <td class="description"></td>
+            <td class="price">Price</td>
+            <td class="quantity">Quantity</td>
+            <td class="total">Total</td>
+            <td></td>
+            <td></td>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cartItem of cartItems">
+            <td class="cart_product">
+              <a href=""><img src="assets/images/cart/one.png" alt=""></a>
+            </td>
+            <td class="cart_description">
+              <h4><a href="">{{cartItem.name}}</a></h4>
+              <p>Web ID: 1089772</p>
+            </td>
+            <td class="cart_price">
+              <p>{{cartItem.nprix}} TND</p>
+            </td>
+            <td class="cart_quantity">
+              <div class="cart_quantity_button">
+                <button (click)="incrementQuantity(cartItem)" class="cart_quantity_up"> + </button>
+                <input class="cart_quantity_input" type="text" name="quantity" value="{{cartItem.quantity}}"
+                  autocomplete="off" size="2">
+                <button (click)="decrementQuantity(cartItem)" class="cart_quantity_down"> - </button>
+              </div>
+            </td>
+            <td class="cart_total">
+              <p class="cart_total_price">{{cartItem.quantity * cartItem.nprix}} TND</p>
+            </td>
+            <td class="cart_delete">
+              <button (click)="remove(cartItem)" class="cart_quantity_delete"><i class="fa fa-times"></i></button>
+            </td>
+          </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+   
+    <div *ngIf="cartItems.length == 0" class="alert alert-warning col-md-12" role="alert">
+      Your shopping cart is empty.
+    </div>
+    <div class="total_area" style="margin-left:50% ; margin-block-end: 10%  ;">
+        <button class="btn btn-default check_out" routerLink="/checkout">Check Out</button>
+    </div>
+  </div>
+  
+</section>
+<!--/#cart_items-->
 
 
 <!--checkout-->
 
-<section id="do_action">
+<!--section id="do_action">
     <div class="container">
         <div class="heading">
             <h3>What would you like to do next?</h3>
@@ -134,7 +143,7 @@
             </div>
         </div>
     </div>
-</section><!--/#do_action-->
+</§section><!--/#do_action-->
 
 
 
