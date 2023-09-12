@@ -1,15 +1,37 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { CategoryProduct } from 'src/app/common/category-product';
+import { CategoryProductService } from 'src/app/services/category-product.service';
 
 @Component({
   selector: 'app-list-category',
   templateUrl: './list-category.component.html',
-  styleUrls: ['./list-category.component.css']
+  styleUrls: ['./list-category.component.css',
+  '../../../../assets/admin/css/paper-dashboard.css?v=2.0.1',
+  '../../../../assets/admin/demo/demo.css',
+  '../../../../assets/admin/css/bootstrap.min.css',],
+  encapsulation: ViewEncapsulation.ShadowDom,
 })
 export class ListCategoryComponent implements OnInit {
 
-  constructor() { }
+  listCategory : Array<CategoryProduct>=[];
+  selectedCategory =null;
+  constructor(private categoryService:CategoryProductService) { }
 
   ngOnInit(): void {
+    return this.getAllCategories();
   }
+  getAllCategories(): void {
+    this.categoryService.getProductCategories().subscribe((data:CategoryProduct[])=>{
+      this.listCategory=data;
+    })
+  }
+ 
+
+  remove(id: number):void {
+    this.categoryService.deleteCategory(id).subscribe(()=>  (this.listCategory=this.listCategory.filter((t)=>t.id !==id)));
+}
+
+
 
 }
+

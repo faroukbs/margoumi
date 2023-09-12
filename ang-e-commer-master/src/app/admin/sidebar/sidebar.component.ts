@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
     '../../../assets/admin/demo/demo.css',
     '../../../assets/admin/css/bootstrap.min.css',
   ],
+  
+  
 })
 export class SidebarComponent implements OnInit {
   constructor() {}

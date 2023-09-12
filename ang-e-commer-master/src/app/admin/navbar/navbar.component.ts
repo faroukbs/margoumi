@@ -9,6 +9,7 @@ import { Component, OnInit } from '@angular/core';
     '../../../assets/admin/demo/demo.css',
     '../../../assets/admin/css/bootstrap.min.css',
   ],
+
 })
 export class NavbarComponent implements OnInit {
   constructor() {}

@@ -1,6 +1,8 @@
+import { Product } from './../../common/product';
+import { ProductService } from 'src/app/services/product.service';
 import { CategoryProductService } from './../../services/category-product.service';
 import { CategoryProduct } from './../../common/category-product';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 
 @Component({
@@ -10,7 +12,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoryProductComponent implements OnInit {
   categories!: CategoryProduct[];
-  constructor(private categoryProductService: CategoryProductService) { }
+  @Input() products!: Product[];
+ 
+  constructor(private categoryProductService: CategoryProductService,public productService:ProductService) { }
 
   ngOnInit(): void {
     this.categoriesProductList();
@@ -19,6 +23,17 @@ export class CategoryProductComponent implements OnInit {
     this.categoryProductService.getProductCategories().subscribe(data => {
       this.categories = data
     })
+  }
+  getProductByCategory(id: number){
+    this.productService.getProductByCategory(id).subscribe(data => {
+      this.products = data
+    })
+  }
+
+  showProductByCategory(id: number){
+    
+    this.getProductByCategory(id);
+    console.log(this.products);
   }
 
 

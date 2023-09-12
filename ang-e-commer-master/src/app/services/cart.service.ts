@@ -3,20 +3,19 @@ import { Subject } from 'rxjs';
 import { CartItem } from '../common/cart-item';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CartService {
-
-  cartItems : CartItem[] = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems') || '{}') : [];
+  cartItems: CartItem[] = localStorage.getItem('cartItems')
+    ? JSON.parse(localStorage.getItem('cartItems') || '{}')
+    : [];
 
   totalPrice: Subject<number> = new Subject<number>();
   totalQuantity: Subject<number> = new Subject<number>();
 
-
-  constructor() { }
+  constructor() {}
 
   addToCart(theCartItem: CartItem) {
-
     // check if we already have the item in our cart
     let alreadyExistsInCart: boolean = false;
     let existingCartItem: CartItem = undefined!;
@@ -24,28 +23,29 @@ export class CartService {
     if (this.cartItems.length > 0) {
       // find the item in the cart based on item id
 
-      existingCartItem = this.cartItems.find( tempCartItem => tempCartItem.id === theCartItem.id )!;
+      existingCartItem = this.cartItems.find(
+        (tempCartItem) => tempCartItem.id === theCartItem.id
+      )!;
 
       // check if we found it
-      alreadyExistsInCart = (existingCartItem != undefined);
+      alreadyExistsInCart = existingCartItem != undefined;
     }
-    
+
     if (alreadyExistsInCart) {
       // increment the quantity
       existingCartItem.quantity++;
-    }
-    else {
+    } else {
       // just add the item to the array
       this.cartItems.push(theCartItem);
       // this.cartItems =  [...this.cartItems, theCartItem]
     }
-    
-    localStorage.setItem('cartItems', JSON.stringify(this.cartItems))
+
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
     // compute cart total price and total quantity
     this.computeCartTotals();
   }
 
-  computeCartTotals(){
+  computeCartTotals() {
     let totalPriceValue: number = 0;
     let totalQuantityValue: number = 0;
 
@@ -63,35 +63,41 @@ export class CartService {
   }
 
   logCartData(totalPriceValue: number, totalQuantityValue: number) {
-
     console.log('Contents of the cart');
     for (let tempCartItem of this.cartItems) {
       const subTotalPrice = tempCartItem.quantity * tempCartItem.nprix;
-      console.log(`name: ${tempCartItem.name}, quantity=${tempCartItem.quantity}, nprix=${tempCartItem.nprix}, subTotalPrice=${subTotalPrice}`);
+      console.log(
+        `name: ${tempCartItem.name}, quantity=${tempCartItem.quantity}, nprix=${tempCartItem.nprix}, subTotalPrice=${subTotalPrice}`
+      );
     }
 
-    console.log(`totalPrice: ${totalPriceValue.toFixed(2)}, totalQuantity: ${totalQuantityValue}`);
+    console.log(
+      `totalPrice: ${totalPriceValue.toFixed(
+        2
+      )}, totalQuantity: ${totalQuantityValue}`
+    );
     console.log('----');
   }
 
   decrementQuantity(theCartItem: CartItem) {
-    const item: CartItem = this.cartItems.find( tempCartItem => tempCartItem.id === theCartItem.id )!;
+    const item: CartItem = this.cartItems.find(
+      (tempCartItem) => tempCartItem.id === theCartItem.id
+    )!;
     item.quantity--;
 
     if (theCartItem.quantity === 0) {
       this.remove(theCartItem);
-    }
-    else {
+    } else {
       this.computeCartTotals();
     }
-    localStorage.setItem('cartItems', JSON.stringify(this.cartItems))
-    
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
 
   remove(theCartItem: CartItem) {
-
     // get index of item in the array
-    const itemIndex = this.cartItems.findIndex( tempCartItem => tempCartItem.id === theCartItem.id );
+    const itemIndex = this.cartItems.findIndex(
+      (tempCartItem) => tempCartItem.id === theCartItem.id
+    );
 
     // if found, remove the item from the array at the given index
     if (itemIndex > -1) {
@@ -100,7 +106,6 @@ export class CartService {
       this.computeCartTotals();
     }
 
-    localStorage.setItem('cartItems', JSON.stringify(this.cartItems))
+    localStorage.setItem('cartItems', JSON.stringify(this.cartItems));
   }
-
 }
